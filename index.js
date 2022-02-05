@@ -3,13 +3,15 @@ const app = express();
 const bodyParser = require("body-parser");
 //database
 const conn = require("./database/database");
+const Pergunta = require("./database/Pergunta");
+
 
 conn
     .authenticate()
     .then(() => {
         console.log("Conexao realizada com o BD")
     })
-    .catch((msgErro) =>{
+    .catch((msgErro) => {
         console.log(msgErro);
     });
 
@@ -32,8 +34,14 @@ app.get("/perguntar", (req,res)=>{
 app.post("/salvarpergunta",(req,res)=>{
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-
-    res.send("Formulário Recebido" + titulo +" " + descricao);
+       Pergunta.create({
+        titulo: titulo,
+        descricao: descricao
+    }).then(() => {
+        res.redirect("/");
+    });
+    
+ //   res.send("Formulário Recebido" + titulo +" " + descricao);
 });
 
 app.listen(8080,()=>{console.log("App rodando");});

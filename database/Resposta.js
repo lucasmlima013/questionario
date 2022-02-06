@@ -10,6 +10,10 @@ const Resposta = conn.define('resposta',{
     descricao: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    resposta: {
+        type: Sequelize.TEXT,
+        allowNull: false
     }
 });
 

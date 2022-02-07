@@ -1,6 +1,25 @@
 <%- include('partials/header.ejs') %>
 <body>
     <%- include('partials/navbar.ejs') %>
-    <h1>Teste bootstrap</h1>    
+    <h1>FAQ</h1>
+    <BR>
+        <hr>
+        <a href="/perguntar" class="btn btn-primary">Perguntar</a>
+        <hr>
+
+        
+    <% pergunta.forEach(function(pergunta) { %>
+
+        <h3> <%= pergunta.titulo %>    </h3>
+        <h3> <%= pergunta.descricao %> </h3>
+        <button class="btn btn-success">RESPONDER</button>
+
+        <hr>
+
+    <% }) %>
+
+
+
+
 </body>
 <%- include('partials/footer.ejs') %>

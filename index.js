@@ -6,6 +6,17 @@ const conn = require("./database/database");
 const Pergunta = require("./database/Pergunta");
 
 
+app.get("/", (req, res) => {
+    Pergunta.findAll({ raw: true, order:[
+        ['id', 'DESC']
+    ]}).then(pergunta => {
+        //console.log(perguntas);
+        res.render("index",{
+            pergunta: pergunta
+        });
+    }); //select * from perguntas
+ });
+
 conn
     .authenticate()
     .then(() => {
@@ -15,7 +26,6 @@ conn
         console.log(msgErro);
     });
 
-
 //usando express com EJS
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
@@ -23,9 +33,6 @@ app.set('view engine', 'ejs');
 //Configuração BodyParser
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get("/", (req, res) => {
-   res.render("index");
-});
 
 app.get("/perguntar", (req,res)=>{
     res.render("perguntar");

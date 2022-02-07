@@ -6,7 +6,6 @@ const Pergunta = conn.define('pergunta',{
         type: Sequelize.STRING,
         allowNull: false
     },
-    
     descricao: {
         type: Sequelize.TEXT,
         allowNull: false
